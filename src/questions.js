@@ -93,7 +93,7 @@ const forkPrompt = {
     "Add an intern to my team",
     "Finish building team",
   ],
-  default:""
+  default: "Finish building team",
   filter(val) {
     let valParse = val.split(" ");
     if (valParse[2] === "engineer") {
