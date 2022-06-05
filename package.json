@@ -1,0 +1,26 @@
+{
+  "name": "employee-registry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AMHaag/crunch-moon-jones.git"
+  },
+  "author": "Aaron Haag",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AMHaag/crunch-moon-jones/issues"
+  },
+  "homepage": "https://github.com/AMHaag/crunch-moon-jones#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^28.1.0"
+  }
+}
