@@ -1,7 +1,9 @@
 const inquirer = require("inquirer");
+const global = require('../lib/global')
 const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
-const Intern = require("../lib/Intern");
+const Intern = require("../lib/Intern"); 
+const pageBuilder = require("../dist/page-builder");
 
 const managerPrompts = [
   {
@@ -108,48 +110,58 @@ const forkPrompt = {
 };
 
 //* module variables to store answers formatted as objects
-const teamLeader = {};
-const engineerArray = [];
-const internArray = [];
+let teamLeader = global.manager;
+const engineerArray = global.engineers;
+const internArray = global.interns;
 
-//*these three functions asks questions and write their answers to global objects/arrays
+//* these three functions asks questions and write their answers to global objects/arrays
 const askTeamLeader = function () {
   inquirer.prompt(managerPrompts).then((a) => {
-    teamLeader.name = a.mng_name;
-    teamLeader.id = a.mng_id;
-    teamLeader.email = a.mng_email;
-    teamLeader.officeNumber = a.mng_office;
-  });
+    const tl = new Manager(a.mng_name,a.mng_id,a.mng_email,a.mng_office)
+    teamLeader=tl;
+    console.log(teamLeader)
+    return ''
+  }).then((arg)=>{fork();});
 };
 const addEngineer = function () {
   inquirer.prompt(engineerPrompts).then((a) => {
-    const eng = new Engineer(a.eng_name, a.eng_id, a.eng_email, a.eng_GitHub);
+    const eng = new Engineer.Engineer(a.eng_name, a.eng_id, a.eng_email, a.eng_GitHub);
     engineerArray.push(eng);
+    fork();
   });
 };
 const addIntern = function () {
   inquirer.prompt(internPrompts).then((a) => {
-    const int = new Intern(a.int_name, a.int_id, a.int_email, a.int_school);
-    internArray.push(int);
+    const intern = new Intern.Intern(a.int_name, a.int_id, a.int_email, a.int_school);
+    internArray.push(intern);
+    fork();
   });
 };
 const fork = function () {
   inquirer.prompt(forkPrompt).then((a) => {
-    console.log(a);
+    // console.log(a.fork)
+    if (a.fork === "engineer") {
+      addEngineer();
+      return
+    }
+    else if(a.fork === "intern") {
+      addIntern();
+    } else {
+      pageBuilder.buildPage(teamLeader,engineerArray,internArray);
+      
+    }
   });
 };
-// askTeamLeader();
-// addEngineer()
-// addIntern()
-fork();
-
-let x = () => {
-  console.log(teamLeader);
-  console.log(engineerArray);
-  console.log(internArray);
+module.exports = {
+  askTeamLeader,
+  addEngineer,
+  addIntern,
+  fork,
+  teamLeader,
+  engineerArray,
+  internArray,
 };
-// setTimeout(newEngineer,5000)
-// setTimeout(x, 10000);
-module.exports = askTeamLeader;
-module.exports = engineerArray;
-module.exports = internArray;
+
+
+//TODO Remove undefined guard statements in page-builder
+//TODO figure out make better? probably
