@@ -5,6 +5,7 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 const pageBuilder = require("../dist/page-builder");
 
+//* These are the inquirer prompts for the 4 questions
 const managerPrompts = [
   {
     prefix: "Manager:",
@@ -109,12 +110,13 @@ const forkPrompt = {
   },
 };
 
-//* module variables to store answers formatted as objects
+//* global variables to store answers formatted as objects and arrays accessible by other modules
 let teamLeader = global.manager;
 const engineerArray = global.engineers;
 const internArray = global.interns;
 
-//* these three functions asks questions and write their answers to global objects/arrays
+//* these three functions asks questions and write their answers to the global objects/arrays
+//* They're recursive so only ask should ever be invoked.
 const ask = function () {
   inquirer
     .prompt(managerPrompts)
@@ -167,6 +169,8 @@ const fork = function () {
     }
   });
 };
+
+
 module.exports = {
   ask,
   addEngineer,
@@ -177,5 +181,3 @@ module.exports = {
   internArray,
 };
 
-//TODO Remove undefined guard statements in page-builder
-//TODO figure out make better? probably

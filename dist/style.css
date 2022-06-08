@@ -1,0 +1,40 @@
+*{
+    margin:0px;
+    font-family: 'Radio Canada', sans-serif;
+}
+.top-bar{
+    height:100px;
+    text-align: center;
+    color: white;
+    background-color: red;
+}
+.card-container{
+    padding:2em 6em 2em 6em;
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+.card{
+    height:200px;
+    width:200px;
+    border:1px solid black;
+    background-color: antiquewhite;
+    margin:1rem;
+}
+.top-edge{
+    background-color: blue;
+    padding: 0.5em;
+    height:2.5em;
+    color: white;
+    font-size: larger;
+}
+
+.detail{
+    display: flex;
+    flex-wrap: wrap;
+}
+.detail-item{
+    min-width: 100px;
+    padding:0.5em;
+}
