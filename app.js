@@ -1,7 +1,8 @@
 const questions = require("./src/questions");
 
+
 const run = function () {
-  questions.askTeamLeader();
+  questions.ask();
 };
 run();
-// module.exports = teamReady;
+
